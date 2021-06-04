@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+    <title>Vis Viewer</title>
+    <link rel="stylesheet" href="style.css">
+
+    <script type="text/javascript" src="https://visjs.github.io/vis-network/standalone/umd/vis-network.min.js"></script>
+
+    <style type="text/css">
+      #mynetwork {
+        width: 100%;
+        height: 800px;
+        border: 1px solid lightgray;
+      }
+    </style>
+  </head>
+  <body>
+  An online VIS JS JSON Viewer<br>
+  <textarea id="plan_text" rows="4" cols="200">(enter json here)</textarea>
+  <br>
+  <button type="button" onclick="generate()">Generate</button>
+    <div id="mynetwork"></div>
+
+    <script type="text/javascript">
+      function generate()
+      {
+        // parse splice plan
+        var text = document.getElementById("plan_text").value;
+        var json = JSON.parse(text);
+        // create a network
+        var container = document.getElementById("mynetwork");
+        var data = {
+          nodes: json.nodes,
+          edges: json.edges,
+        };
+       
+        var options = {};
+        var network = new vis.Network(container, data, options);
+      }          
+    </script>
+  </body>
+</html>
